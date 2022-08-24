@@ -18,7 +18,7 @@ void possibleWords(int a[], vector<char> words[], int n, string curr = "", int i
 {
     if (index == n)
     {
-        cout << curr << " ";
+        cout << curr << endl;
         return;
     }
     
