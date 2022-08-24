@@ -30,7 +30,7 @@ def pyramid(n):
         for gap in range(n-x, 0, -1):
             print(end="  ")
         if (x % 2 == 0):
-            for gap in range(1, x):
+            for _ in range(1, x):
                 print(end="  ")
             for i in range(x, 0, -1):
                 print(i, end=" ")
