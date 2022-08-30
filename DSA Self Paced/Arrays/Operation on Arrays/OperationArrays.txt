@@ -1,0 +1,17 @@
+Recap of Operation on Arrays!!
+
+Insert: O(n)
+Search: O(n) for Unsorted
+        O(log n) for Sorted (Binary Search)
+Delete: O(n)
+
+These are speciality of the Arrays - Random Access(arr[i])
+Get ith Element: O(1)
+Update ith Element: O(1)
+
+Note: Insert at the end (assuming you have extra space in the array) and Delete from the end can be done in O(1) time.
+
+
+Other data stuctures provide insert, search, delete in much faster time complexity. Especially Hash that has the time complexity for insert, search, delete in O(1) in average.
+
+But arrays, they have the speciality of random access and they also have cache friendliness, which make them useful in many places.
