@@ -66,4 +66,3 @@ print("Following is Breadth First Traversal"
       " (starting from vertex 2)")
 g.BFS(2)
 
-# This code is contributed by Neelam Yadav

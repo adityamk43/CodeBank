@@ -35,7 +35,8 @@ int secondLargestElement(vector<int> arr)
 
 int main()
 {
-    vector<int> arr = {1, 3, 54, 8, 10};
+    // vector<int> arr = {1, 3, 54, 8, 10};
+    vector<int> arr = {1, 2, 3, 4, 5};
 
     cout << secondLargestElement(arr);
 
