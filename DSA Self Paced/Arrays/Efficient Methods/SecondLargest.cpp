@@ -12,33 +12,55 @@
 
 using namespace std;
 
-int secondLargestElement(vector<int> arr)
-{
-    int max = -1;
-    int secondMax = -1;
+/*
+    TIME COMPLEXITY: ⊖(n)
+    AUXILIARY SPACE: ⊖(1)
 
-    for (int i=0; i<arr.size(); i++)
+    It finds the Second Largest in One Traversal Only
+*/
+
+/*
+    DRY RUN: 
+    {5, 20, 12, 20, 8}
+    largest = 0, res = -1
+
+    i=1: res = 0, largest = 1
+    i=2: res = 2
+    i=3: IGNORE
+    i=4: IGNORE
+*/
+int secondLargest(vector<int> arr)
+{
+    int largest = 0;
+    int res = -1;
+
+    for (int i=1; i<arr.size(); i++)
     {
-        if (arr[i] > max)
-            max = arr[i];
-        
-        else if (arr[i] != max)
+        if (arr[i] > arr[largest])
         {
-            if (secondMax == -1 || arr[i] > secondMax)
-                secondMax = arr[i];
+            res = largest;
+            largest = i;
+        }
+        else if (arr[i] != arr[largest])
+        {
+            if (res == -1 || arr[i] > arr[res])
+                res = i;
         }
 
     }
 
-    return secondMax;
+    return res;
 }
 
 int main()
 {
-    // vector<int> arr = {1, 3, 54, 8, 10};
-    vector<int> arr = {1, 2, 3, 4, 5};
+    vector<int> arr = {20, 10, 20, 8, 12};
+    // vector<int> arr = {10, 10, 10};
 
-    cout << secondLargestElement(arr);
+    int secondLargestIndex = secondLargest(arr);
+
+    // cout << secondLargestIndex << endl;
+    cout << "Second Largest: " << arr[secondLargestIndex];
 
     return 0;
 }

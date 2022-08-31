@@ -12,23 +12,28 @@
 
 using namespace std;
 
-int largestElement(vector<int> arr)
+/*
+    TIME COMPLEXITY: ⊖(n)
+*/
+int getLargest(vector<int> arr)
 {
-    int max = -1;
-    for (int i=0; i<arr.size(); i++)
-    {
-        if (arr[i] > max)
-            max = arr[i];
-    }
+    int res = 0;
 
-    return max;
+    for (int i=1; i<arr.size(); i++)
+        if (arr[i] > arr[res])
+            res = i;
+
+    return res;
 }
 
 int main()
 {
     vector<int> arr = {1, 3, 54, 8, 10};
 
-    cout << largestElement(arr);
+    int largest = getLargest(arr);
+
+    // cout << largest << endl;
+    cout << arr[largest];
 
     return 0;
 }
