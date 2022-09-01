@@ -25,6 +25,10 @@ using namespace std;
 */
 
 /*
+    IDEA: We traverse the array from left to right and for every element we check that there should not be any smaller element on right side of it.
+*/
+
+/*
     DRY RUN:
     {7, 20, 30, 10}
 
@@ -33,6 +37,7 @@ using namespace std;
     i=1: 
         j=3: return false
 */
+
 
 bool isSorted(int *arr, int n)
 {
