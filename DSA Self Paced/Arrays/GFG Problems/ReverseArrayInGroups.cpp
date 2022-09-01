@@ -65,40 +65,73 @@ class Solution
 {
 public:
     // Function to reverse every sub-array group of size k.
-    void reverseArray(vector<long long> &arr, int start, int end, int k)
-    {
-        if (start >= arr.size())
-        {
-            // cout << "Start: " << start << "    ";
-            return;
-        }
 
-        int low = start;
-        int high;
+    //MY APPROACH
+    // void reverseArray(vector<long long> &arr, int start, int end, int k)
+    // {
+    //     if (start >= arr.size())
+    //     {
+    //         // cout << "Start: " << start << "    ";
+    //         return;
+    //     }
 
-        if (end >= arr.size())
-            high = arr.size() - 1;
-        else
-            high = end;
+    //     int low = start;
+    //     int high;
 
-        // cout << "Low: " << low << "  " << "High: " << high << "   ";
-        while (low < high)
-        {
-            swap(arr[low], arr[high]);
-            low++;
-            high--;
-        }
+    //     if (end >= arr.size())
+    //         high = arr.size() - 1;
+    //     else
+    //         high = end;
 
-        // cout << "Start: " << start + k << "  " << "End: " << end + k << "  ";
+    //     // cout << "Low: " << low << "  " << "High: " << high << "   ";
+    //     while (low < high)
+    //     {
+    //         swap(arr[low], arr[high]);
+    //         low++;
+    //         high--;
+    //     }
 
-        reverseArray(arr, start + k, end + k, k);
-    }
+    //     // cout << "Start: " << start + k << "  " << "End: " << end + k << "  ";
 
+    //     reverseArray(arr, start + k, end + k, k);
+    // }
+
+    // void reverseInGroups(vector<long long> &arr, int n, int k)
+    // {
+    //     // code here
+    //     reverseArray(arr, 0, k - 1, k);
+    // }
+
+/*
+    Example: 
+        I/P: 
+            size = 33, k = 13
+            arr[] = 36 93 64 48 96 55 70 0 82 30 16 22 38 53 19 50 91 43 70 88 10 57 14 94 13 36 59 32 54 58 18 82 67
+        O/P:
+            arr[] = 38 22 16 30 82 0 70 55 96 48 64 93 36 36 13 94 14 57 10 88 70 43 91 50 19 53 67 82 18 58 54 32 59
+*/
+
+    //SIMPLER APPROACH
     void reverseInGroups(vector<long long> &arr, int n, int k)
     {
         // code here
-        reverseArray(arr, 0, k - 1, k);
+        for (int i=0; i<n; i+=k)
+        {
+            int start = i;
+
+            int end = min(i+k-1, n-1);
+
+            while (start<end)
+                swap(arr[start++], arr[end--]);
+        }
     }
+
+    //Shortest and clear cpp code for vector
+    // void reverseInGroups(vector<long long> &arr, int n, int k)
+    // {
+    //     for(int l=0; l<n; l+=k)
+    //         reverse(arr.begin()+l,arr.begin()+min(n,k+l));
+    // }
 };
 
 //{ Driver Code Starts.
