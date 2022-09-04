@@ -17,6 +17,10 @@ using namespace std;
     TIME COMPLEXITY: O(n)
 */
 
+/*
+    MOORE'S VOTING ALGORITHM
+*/
+
 int findMajority(int arr[], int n)
 {
     //First Phase
