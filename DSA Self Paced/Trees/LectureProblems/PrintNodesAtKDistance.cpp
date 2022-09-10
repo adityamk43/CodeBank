@@ -27,6 +27,7 @@ struct Node{
 
 };
 
+
 /*
     TIME COMPLEXITY: ⊝(n)
     AUXILIARY SPACE: ⊝(h) h = max height of tree (h+1)
@@ -34,14 +35,17 @@ struct Node{
 
 void printNodeAtKDistance(Node *root, int k)
 {
-    if (k==0)
-    {
-        cout << root->key << " ";
+    if (root == NULL)
         return;
-    }
 
-    printNodeAtKDistance(root->left, k-1);
-    printNodeAtKDistance(root->right, k-1);
+    if (k==0)
+        cout << root->key << " ";
+
+    else
+    {
+        printNodeAtKDistance(root->left, k-1);
+        printNodeAtKDistance(root->right, k-1);
+    }
 }
 
 int main()

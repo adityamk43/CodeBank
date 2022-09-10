@@ -28,9 +28,15 @@ struct Node
 };
 
 /*
-    TIME COMPLEXITY: ⊝(n)
-    AUXILIARY SPACE: ⊝(w) or O(n)   w = max width of tree ((n+1)/2)
-                    ⊝(1) when tree is queued structured like tree root and its child has only left nodes and right nodes are null
+    TIME COMPLEXITY: ⊝(n+h) = ⊝(n)
+                    h is for extra nulls for that we have to process for every level only, when we have to print line by line in  method 1 
+
+    AUXILIARY SPACE: ⊝(w) or O(n)   w = width of binary tree ((n+1)/2)
+                    
+                    ⊝(w + 1) where 1 is for extra null so 1 can be ignored as it is a constant
+
+
+                    ⊝(1) when tree is skewed structured like tree root and its child has only left nodes and right nodes are null
                     ⊝(n) when it is a pure/perfect Binary tree. Eg: when tree has 15 nodes then its leaves will be (15+1)/2 = 8
 */
 
@@ -66,6 +72,15 @@ struct Node
 
 // }
 
+
+/*
+    TIME COMPLEXITY: O(n) 
+                There are two loops here and analysing this way might be difficult.
+                So, a simple way to analyse it, We are going to traverse n Nodes, for every node it's going to enter into the queue once and it's going to come out of the queue once and these both are O(1) operations, so we do constant work for every node. Therefore, the time complexity is O(n) 
+    
+    AUXILIARY SPACE: ⊝(w) or O(n)   w = width of binary tree ((n+1)/2)
+*/
+
 // METHOD 2 MAINTAINING SIZE OF QUEUE TO PRINT NODES ACCORDING TO BREADTH
 void levelOrderTraversalBFSLineByLine(Node *root)
 {
@@ -77,6 +92,7 @@ void levelOrderTraversalBFSLineByLine(Node *root)
 
     while (!q.empty())
     {
+        //it is necessary to maintain queue size here in a variable as queue size will change inside the below for loop and it will cause the error in the code
         int count = q.size();
 
         for (int i = 0; i < count; i++)

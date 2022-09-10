@@ -28,9 +28,22 @@ struct Node{
 };
 
 /*
+    Inefficient way could be that we could have used functions of finding height of the tree and print Nodes at K Distance.
+
+    First we call heightOfTheTree function to get the height of the Binary Tree which will take O(n) time.
+
+    Then, in another function we run a loop till height of tree inside of which we will call printNodesAtK Distance, which will do level order printing of nodes. This will take O(h*n) time.
+
+    So Overall time Complexity will become O(n + n*h) = O(n*h)
+
+    We have done the level order traversal in O(n) time using queue below which is a efficient approach!!
+
+*/
+
+/*
     TIME COMPLEXITY: ⊝(n)
-    AUXILIARY SPACE: ⊝(w) or O(n)   w = max width of tree ((n+1)/2)
-                    ⊝(1) when tree is queued structured like tree root and its child has only left nodes and right nodes are null
+    AUXILIARY SPACE: ⊝(w) or O(n)   w = max width of binary tree ((n+1)/2)
+                    ⊝(1) when tree is skewed structured like tree root and its child has only left nodes and right nodes are null or vice versa
                     ⊝(n) when it is a pure/perfect Binary tree. Eg: when tree has 15 nodes then its leaves will be (15+1)/2 = 8
 */
 
