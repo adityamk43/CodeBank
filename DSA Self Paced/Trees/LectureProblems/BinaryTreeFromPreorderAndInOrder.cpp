@@ -84,8 +84,41 @@ struct Node
     ie is inorder end pointer
 */
 //This pointer will maintain preOrder index for all nodes (for all recursive function)
+// int preIndex = 0;
+// Node *constructTree(int pre[], int in[], int is, int ie)
+// {
+//     if (is > ie)
+//         return NULL;
+    
+//     //as explained earlier, preorder has stores data as first root then left then right child node
+//     Node *root = new Node(pre[preIndex++]);
+
+//     /**
+//      * @brief To find the root element in inorder array so, that we can compute its left and right child nodes
+//      * 
+//      */
+//     int inIndex = 0;
+//     for (int i=is; i<=ie; i++)
+//     {
+//         if (in[i] == root->key)
+//         {
+//             inIndex = i;
+//             break;
+//         }
+//     }
+
+//     //recursive call for left and right child nodes untill whole tree is fullly constructed, then we return the root node to the parent call..
+//     root->left = constructTree(pre, in, is, inIndex-1);
+//     root->right = constructTree(pre, in, inIndex+1, ie);
+
+//     return root;
+// }
+
+/*
+    USING HASHING
+*/
 int preIndex = 0;
-Node *constructTree(int pre[], int in[], int is, int ie)
+Node *constructTree(int pre[], int in[], unordered_map<int, int> &inorderMap, int is, int ie)
 {
     if (is > ie)
         return NULL;
@@ -94,25 +127,30 @@ Node *constructTree(int pre[], int in[], int is, int ie)
     Node *root = new Node(pre[preIndex++]);
 
     /**
-     * @brief To find the root element in inorder array so, that we can compute its left and right child nodes
+     * @brief To find the root element in inorder array so, that we can compute its left and right child nodes. In this we are finding using pre computed Hashmap
      * 
      */
-    int inIndex = 0;
-    for (int i=is; i<=ie; i++)
-    {
-        if (in[i] == root->key)
-        {
-            inIndex = i;
-            break;
-        }
-    }
+    //find function finds the iterator of that element in O(1) time on an average
+    // auto it = inorderMap.find(root->key);
+    // int inIndex = it->second;
+
+    /**
+     * @brief Both at() and operator[] is used to refer the element present at the given position, the only difference is, at() throws out-of-range exception whereas operator[] shows undefined behavior i.e. if operator[] is used to find the value corresponding to key and if key is not present in unordered map, it will first insert the key into the map and then assign the default value ‘0’ corresponding to that key. . 
+     * 
+     */
+    int inIndex = inorderMap.at(root->key);
+    //OR
+    // int inIndex = inorderMap[root->key];
+
 
     //recursive call for left and right child nodes untill whole tree is fullly constructed, then we return the root node to the parent call..
-    root->left = constructTree(pre, in, is, inIndex-1);
-    root->right = constructTree(pre, in, inIndex+1, ie);
+    root->left = constructTree(pre, in, inorderMap, is, inIndex-1);
+    root->right = constructTree(pre, in, inorderMap, inIndex+1, ie);
 
     return root;
 }
+
+
 
 
 //To print constructed tree in inorder method
@@ -131,7 +169,22 @@ int main()
 
     int n=sizeof(in)/sizeof(in[0]);
 
-    Node *root = constructTree(pre, in, 0, n-1);
+    //This hasing technique is specifically to construct tree in O(n) time instead of O(n^2)
+    unordered_map<int, int> inorderMap;
+    //precomputing values in inorder array to store keys as key and index as value and send it during function call to construct a tree
+    for (int i=0; i<n; i++)
+        inorderMap.insert(make_pair(in[i], i));
+
+    //to check hash mapping by printing hashmap key value pairs
+    // unordered_map<int, int>:: iterator itr;
+    // cout << "\nAll Elements : \n";
+    // for (itr = inorderMap.begin(); itr != inorderMap.end(); itr++)
+    // {
+    //     cout << itr->first << "  " << itr->second << endl;
+    // }
+
+    // Node *root = constructTree(pre, in, 0, n-1);
+    Node *root = constructTree(pre, in, inorderMap, 0, n-1);
 
     inorder(root);
 
