@@ -117,6 +117,10 @@ struct Node
 /*
     USING HASHING
 */
+/*
+    TIME COMPLEXITY: ⊝(n) 
+    AUXILIARY SPACE: ⊝(h)   h = height of binary tree (h+1)
+*/
 int preIndex = 0;
 Node *constructTree(int pre[], int in[], unordered_map<int, int> &inorderMap, int is, int ie)
 {
@@ -169,7 +173,7 @@ int main()
 
     int n=sizeof(in)/sizeof(in[0]);
 
-    //This hasing technique is specifically to construct tree in O(n) time instead of O(n^2)
+    //This hashing technique is specifically to construct tree in O(n) time instead of O(n^2)
     unordered_map<int, int> inorderMap;
     //precomputing values in inorder array to store keys as key and index as value and send it during function call to construct a tree
     for (int i=0; i<n; i++)
