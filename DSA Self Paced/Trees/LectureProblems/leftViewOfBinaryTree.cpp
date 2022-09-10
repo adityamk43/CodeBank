@@ -34,7 +34,7 @@ struct Node
     AUXILIARY SPACE: O(h)
 */
 //Using PreOrderT Traversal
-
+//// We can send maxLevel in function call only using reference
 // int maxLevel = 0;
 // void leftView(Node *root, int level)
 // {
@@ -53,7 +53,7 @@ struct Node
 //METHOD 2
 /*
     TIME COMPLEXITY: O(n)
-    AUXILIARY SPACE: O(w)
+    AUXILIARY SPACE: ⊝(w) or O(n)
 */
 
 //Using Method 2 of Print LevelOrder Traversal Line By Line
