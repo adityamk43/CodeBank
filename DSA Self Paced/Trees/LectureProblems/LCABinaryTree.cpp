@@ -104,48 +104,120 @@ struct Node
 
 
 //this function finds path between root and the given node and store it in the path array and returns true if given node is present in the tree
-bool findPath(Node *root, vector<Node*> &path, int n)
-{
-    if (root == NULL) 
-        return false;
+// bool findPath(Node *root, vector<Node*> &path, int n)
+// {
+//     if (root == NULL) 
+//         return false;
     
-    path.push_back(root);
+//     path.push_back(root);
 
-    if (root->key == n)
-        return true;
+//     if (root->key == n)
+//         return true;
 
-    if (findPath(root->left, path, n) || findPath(root->right, path, n))
-        return true;
+//     if (findPath(root->left, path, n) || findPath(root->right, path, n))
+//         return true;
     
-    path.pop_back();
+//     path.pop_back();
 
-    return false;
+//     return false;
 
-}
+// }
 
-Node* LCA(Node *root, int n1, int n2)
-{
-    vector<Node*> path1, path2;
+// Node* LCA(Node *root, int n1, int n2)
+// {
+//     vector<Node*> path1, path2;
 
-    if (!findPath(root, path1, n1) || !findPath(root, path2, n2))
-        return NULL;
+//     if (!findPath(root, path1, n1) || !findPath(root, path2, n2))
+//         return NULL;
     
-    //to find the LCA from finding least common ancestor from comparing path1 and path2 arrays
-    for (int i=0; i<path1.size()-1 && i<path2.size()-1; i++)
-        if (path1[i+1]!=path2[i+1])
-            return path1[i];
+//     //to find the LCA from finding least common ancestor from comparing path1 and path2 arrays
+//     for (int i=0; i<path1.size()-1 && i<path2.size()-1; i++)
+//         if (path1[i+1]!=path2[i+1])
+//             return path1[i];
 
-    return NULL;
+//     return NULL;
 
-}
+// }
 
 /**
  * @brief EFFICIENT SOLUTION:
  *       
  *  1.) Requires one travesal and ⊝(h) extra space for the recursive traversal.
- *  2.) Assumes that both n1 and n2 exist in the tree. Doesn't give correct result when (n1 or n2 exists. 
+ *  2.) Assumes that both n1 and n2 exist in the tree. Doesn't give correct result when only one (n1 or n2) exists. 
+ *      For example:  n1 exists in the binary tree and n2 doesn't exist. In this particular case, it should be returning null because there is no lca existing in the binary tree, but it returns pointer to or reference to the existing key.
  * 
+ * 
+ * @details IDEA:
+ *      We do normal recursive traversal. We have the following cases for every node:
+ *  1.) If it is same as n1 or n2.
+ *  2.) If one of its subtrees contains n1 and other contains n2.
+ *  3.) If one its subtrees contains both n1 and n2.
+ *  4.) If none of its substrees contain any of n1 and n2.
+ * 
+ * Example of above cases:
+ *                  10
+ *                /    \
+ *              20     30
+ *                    /  \
+ *                  50   60
+ *                 /    /  \
+ *               70   80   90
+ *                          \
+ *                          40
+ * 
+ *  1.) n1 = 10, n2 = 40, curr_node = 10     [returns 10 as it is the current node and n1 is also 10]
+ *  2.) n1 = 80, n2 = 40, curr_node = 60     [returns 60 as only LCA will have n1 in one subtree and n2 in its another subtree, eg: 30 is not lca as 80 and 40 are present in its same subtree and 20 0r 50 doesn't have n1 and n2 in its subtree]
+ *  3.) n1 = 80, n2 = 40, curr_node = 30 OR (10)    [returns what its subtree will return as its subtree has n1 and n2 present in it so, it will return the correct lca to this]
+ *  4.) n1 = 10, n2 = 40, curr_node = 20 OR (50)    [returns null as n1 and n2 are not present in its subtree]
+ *  
  */
+
+//this function is based on the assumption that both keys n1 and n2 are present in the given binary tree otherwise it will not give correct value when either of them is not present.
+Node* LCA(Node *root, int n1, int n2)
+{
+    //4th case (base case) - If none of its substrees contain any of n1 and n2.
+    if (root == NULL)
+        return NULL;
+
+    //1st case - If it is same as n1 or n2.
+    if (root->key == n1 || root->key == n2)
+        return root;
+
+    Node* lca1 = LCA(root->left, n1, n2);
+    Node* lca2 = LCA(root->right, n1, n2);
+
+    //2nd case - If one of its subtrees contains n1 and other contains n2.
+    if (lca1 != NULL && lca2 != NULL)
+        return root;
+    
+    //3rd case - If one its subtrees contains both n1 and n2.
+    if (lca1!=NULL)
+        return lca1;
+    //this will return lca2 when lca2!= null or if lca1 and lca2 is null
+    else
+        return lca2;
+
+}
+
+/**
+    @brief DRY RUN(EFFICIENT SOLUTION):
+ *              10
+ *             /  \
+ *           20  30
+ *              /  \
+ *            40   50
+ *  
+ *          n1 = 40, n2 = 50
+ *      
+ *      LCA(10) [returns 30 as the final answer to parent call] (lca1 = null, lca2 = 30) 
+ *          -> LCA(20) [returns NULL to its parent call] (lca1 = lca2 = NULL)
+ *                  -> LCA(NULL)    
+ *                  -> LCA(NULL)
+ *          -> LCA(30) [returns reference Node of 30 to its parent call] (lca1 = 40, lca2 = 50)
+ *                  -> LCA(40) [returns reference Node of 40 to its parent call]    
+ *                  -> LCA(50) [returns reference Node of 50 to its parent call]    
+ *                  
+*/
 
 int main()
 {
@@ -164,7 +236,8 @@ int main()
     root->right->left = new Node(40);
     root->right->right = new Node(50);
     
-    int n1 = 20, n2 = 50;
+    // int n1 = 20, n2 = 50;
+    int n1 = 40, n2 = 50;
 
     Node *LeastCommonAncestor = LCA(root, n1, n2);
 
