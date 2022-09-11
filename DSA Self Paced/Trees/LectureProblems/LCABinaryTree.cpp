@@ -172,6 +172,13 @@ struct Node
  *  
  */
 
+/*
+    TIME COMPLEXITY: ⊖(n)
+    AUXILIARY SPACE: ⊖(h)
+
+    NOTE: Time Complexity wise, both naive and efficient solution are same. They both take linear time, but this solution requires only one traversal of a binary tree. Also, it requires less space in the worst case.
+*/
+
 //this function is based on the assumption that both keys n1 and n2 are present in the given binary tree otherwise it will not give correct value when either of them is not present.
 Node* LCA(Node *root, int n1, int n2)
 {
