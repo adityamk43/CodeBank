@@ -24,6 +24,7 @@ for keys in dict.keys():
 
 print(dict.keys())
 
+print(dict["Aditya"])
 print(dict["Aditya"][2])
 print(dict["Gourav"][2])
 
