@@ -1,49 +1,46 @@
-from collections import defaultdict
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# import os
 
-class Graph():
+# fs = os.path.join(os.getcwd(), 'Python', 'data.csv')
+# # print(fs)
 
-    def __init__(self):
-        self.graph = defaultdict(list)
-    
-    def addEdge(self, u, v):
-        self.graph[u].append(v)
-    
-    def DFSUtil(self, v, visited):
+# df = pd.read_csv(fs)
 
-        visited.add(v)
-        print(v, end=" ")
+# print(df.head())
 
-        for neighbour in self.graph[v]:
-            if neighbour not in visited:
-                self.DFSUtil(neighbour, visited)
-    
-    def DFS(self, v):
+# # df['Duration'].plot(kind = 'hist')
 
-        visited = set()
+# # plt.show()
 
-        self.DFSUtil(v, visited)
+# print(df.info())
+# print(df.describe())
+
+# import the pandas library
+# import pandas as pd
+# import numpy as np
+# data = {'Name': ['Parker', 'Smith', 'John', 'William'],
+#         'Percentage': [82, 98, 91, 87],
+#         'Course': ['B.Sc', 'B.Ed', 'M.Phill', 'BA']}
+# df = pd.DataFrame(data)
+
+# grouped = df.groupby('Course')
+# print(grouped['Percentage'].mean())
 
 
+import pandas as pd
+import os
 
-g = Graph()
+fs = os.path.join(os.getcwd(), 'Python', 'data.csv')
+# print(fs)
 
-n = int(input("Enter number of edges: "))
-print("\n")
+df = pd.read_csv('./Python/GeoTags.csv')
 
-for i in range(n):
-    g.addEdge(int(input("Enter current node: ")), int(input("Enter connecting node: ")))
-    print("\n")
+# print(df.head(10).groupby('Continent').max('Population'))
+# print(df[['Continent', 'Population']].head().groupby('Continent').max('Population'))
+# print(df.loc[:,['Continent', 'Population']].head().groupby('Continent').max('Population'))
 
-# g.addEdge(0, 1)
-# g.addEdge(0, 2)
-# g.addEdge(1, 2)
-# g.addEdge(2, 0)
-# g.addEdge(2, 3)
-# g.addEdge(3, 3)
+mydf = df.dropna().groupby('Continent').mean('Population')
 
-print("Following is Depth First Traversal"
-      " (starting from vertex 2)")
-
-start = int(input("Enter Starting Node:"))
-g.DFS(start)
+print(mydf.sort_values(by='Continent', ascending = False).to_string())
 
