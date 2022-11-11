@@ -36,6 +36,14 @@ void inorder(Node *root)
     inorder(root->right);
 }
 
+/**
+ * @brief TIME COMPLEXITY: O(n)
+ *        AUX SPACE: O(h)
+ * @param root 
+ * @param first 
+ * @param second 
+ * @param prev 
+ */
 //idea is simply use the previous technique of checkBST using inorderTraversal
 void fixBST(Node *root, Node* &first, Node* &second, Node* &prev)
 {
