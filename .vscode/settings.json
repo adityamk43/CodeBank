@@ -10,7 +10,9 @@
         "semaphore": "cpp",
         "valarray": "cpp",
         "bitset": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "new": "cpp",
+        "compare": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
