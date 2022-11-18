@@ -41,6 +41,33 @@ class MinHeap
 
     int extractMin();
 
+    //LECTURE 5
+    void decreaseKey(int i, int x);
+
+    void deleteKey(int i);
+
+    void buildHeap();
+
+    //NOTE: This function is only being implemented to check working of BUILD HEAP. This function is not by any means is related to MinHeap Implementation and operations!!
+    void setArrayForBuildHeap()
+    {
+        //EXAMPLE 1
+        size = 7;
+        arr[0] = 10;
+        arr[1] = 5;
+        arr[2] = 20;
+        arr[3] = 2;
+        arr[4] = 4;
+        arr[5] = 8;
+        arr[6] = 25;
+
+        //EXAMPLE 2
+        // size = 3;
+        // arr[0] = 30;
+        // arr[1] = 20;
+        // arr[2] = 10;
+    }
+
     //Simple function by me just to check array elements and for debugging
     void printMinHeap()
     {
@@ -50,7 +77,7 @@ class MinHeap
         cout << endl;
     }
 
-    //NOTE: This function is only being implemented to check working of minHeapify. This function is not be means is related to MinHeap!!
+    //NOTE: This function is only being implemented to check working of minHeapify. This function is not by any means is related to MinHeap Implementation and operations!!
     void setArray()
     {
         arr[0] = 40;
@@ -126,27 +153,26 @@ void MinHeap::minHeapify(int i)
 // {
 //     int leftChild = left(i);
 //     int rightChild = right(i);
-
+//
 //     while (i<size)
 //     {
 //         int smallest = i;
-
+//
 //         if (leftChild < size && arr[leftChild] < arr[i])
 //             smallest = leftChild;
 //         if (leftChild < size && arr[rightChild] < arr[smallest])
 //             smallest = rightChild;
-        
+//
 //         if (smallest != i)
 //             swap(arr[i], arr[smallest]);
 //         else
 //             break;
-        
+//
 //         i=smallest;
 //         leftChild = left(i);
 //         rightChild = right(i);
-
+//
 //     }
-
 // }
 
 /**
@@ -186,7 +212,98 @@ int MinHeap::extractMin()
     
 }
 
+/**
+ * @brief LECTURE 5
+ * 
+ *  TIME COMPLEXITY: O(logn)
+ *  AUXILIARY SPACE: O(logn)
+ * 
+ * DECREASE KEY IS USED TO REPLACE THE VALUE OF THE GIVEN INDEX i WITH THE GIVEN VALUE x
+ * 
+ * @param i 
+ * @param x 
+ */
+void MinHeap::decreaseKey(int i, int x)
+{
 
+    arr[i] = x;
+
+    while (i!=0 && arr[parent(i)] > arr[i])
+    {
+        swap(arr[i], arr[parent(i)]);
+
+        i = parent(i);
+    }
+
+}
+
+
+/**
+ * @brief LECTURE 5
+ * 
+ *        TIME COMPLEXITY: O(logn) (Decrease Key) + O(logn) (Extract Min)
+ *                          O(logn)
+ *        AUXILIARY SPACE: O(logn)
+ * 
+ * We do decrease key to replace the given Index value to be delted with -infinity Value (INT_MIN in cpp)
+ * which will automatically heapify itself to root when extract min is called and that index value will be deleted
+ * 
+ * @param i 
+ */
+void MinHeap::deleteKey(int i)
+{
+    decreaseKey(i, INT_MIN);
+    extractMin();
+}
+
+/**
+ * @brief LECTURE 5
+ * 
+ *        TIME COMPLEXITY: O(n) [n=size] [This is derived using G.P. series derivation. Please look GFG MinHeap Build Heap implemenation lecture problem to understand time complexity derivation]
+ * 
+ * MY explanation for T.C. Derivation:
+ * 
+ * Max. no. of nodes at a height h = Ceil( n/2^(h+1) )
+ * 
+ * Thus, Total Time = upper Bound:logn (£) lower bound:h=1 ceil( n/2^(h+1) ) * O(h)
+ *                  = O(n * upper Bound:logn (£) lower bound:h=1  h /2^(h+1) )
+ * 
+ * S = infinite (£) h=1 h /2^(h+1) = 1/2^2 + 2/2^3 + 3/2^4 + 4/2^5 + ....
+ * S/2 =                                     1/2^3 + 2/2^4 + 3/2^5 + 4/2^6 + ....
+ * 
+ * (S-S/2) = 1/2^2 + 1/2^3 + 1/2^4 + .....
+ * (The above equation is in Geometric Progression Therefore,)
+ * 
+ * Using Infinite Sum of G.P. Formula
+ * S/2 = (1/2^2)/(1-1/2) = 1/2
+ * 
+ * 
+ * S=1!!!!
+ * 
+ * This derivation is for h=1 to infinite but we are finding for h=1 to logn. So, it is not worrying as we are finding Big O here and it can be considered.
+ * 
+ * Therefore, in
+ *          O(n * upper Bound:logn (£) lower bound:h=1  h /2^(h+1) )
+ * Formula
+ * 
+ * We can consider {upper Bound:logn (£) lower bound:h=1  h /2^(h+1)} as 1
+ * 
+ * and the Total Time Complexity Becomes O(n)
+ * 
+ * Hence Proved!!!!
+ * 
+ * 
+ * WE ARE GIVEN AN ARRAY AND WE WANT TO HEAPIFY AND REARRANGE THE GIVEN ARRAY INTO MIN HEAP ARRAY
+ * 
+ */
+void MinHeap::buildHeap()
+{
+    //We will start with the bottom and right most internal node!!
+    // since for last element parent is (size-1)-1/2 where i = size-1.
+
+    for (int i = (size-2)/2; i>=0; i--)
+        minHeapify(i);
+}
 
 int main()
 {
@@ -201,13 +318,11 @@ int main()
     // mh.insert(100);
     // mh.insert(25);
     // mh.insert(45);
-
     // mh.printMinHeap();
     // mh.insert(12);
     // mh.printMinHeap();
 
     //LECTURE 4
-
     //MinHeapify Example
     // mh.insert(40);
     // mh.insert(20);
@@ -219,24 +334,49 @@ int main()
     // mh.insert(100);
     // mh.insert(70);
     // mh.insert(60);
-    
     // mh.setArray();
     // mh.minHeapify(0);
     // mh.printMinHeap();
 
     //Extract Min Example
-    mh.insert(20);
-    mh.insert(25);
-    mh.insert(30);
-    mh.insert(35);
-    mh.insert(40);
-    mh.insert(80);
-    mh.insert(32);
-    mh.insert(100);
-    mh.insert(70);
-    mh.insert(60);
+    // mh.insert(20);
+    // mh.insert(25);
+    // mh.insert(30);
+    // mh.insert(35);
+    // mh.insert(40);
+    // mh.insert(80);
+    // mh.insert(32);
+    // mh.insert(100);
+    // mh.insert(70);
+    // mh.insert(60);
+    // cout << mh.extractMin() << endl;
+    // mh.printMinHeap();
 
-    cout << mh.extractMin() << endl;
+    //LECTURE 5
+    // mh.insert(10);
+    // mh.insert(20);
+    // mh.insert(30);
+    // mh.insert(40);
+    // mh.insert(50);
+    // mh.insert(35);
+    // mh.insert(38);
+    // mh.insert(45);
+
+    // mh.printMinHeap();
+    //Decrease Key Example
+    // mh.decreaseKey(3, 15);
+
+    //Delete Example
+    // mh.deleteKey(3);
+
+    // mh.printMinHeap();
+
+    //LECTURE 5 - PART 3
+    //Build Heap Example
+
+    mh.setArrayForBuildHeap();
+    mh.printMinHeap();
+    mh.buildHeap();
     mh.printMinHeap();
 
     return 0;
