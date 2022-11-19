@@ -12,7 +12,8 @@
         "bitset": "cpp",
         "algorithm": "cpp",
         "new": "cpp",
-        "compare": "cpp"
+        "compare": "cpp",
+        "complex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
