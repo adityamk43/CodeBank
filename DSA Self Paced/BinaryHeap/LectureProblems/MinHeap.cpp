@@ -252,6 +252,8 @@ void MinHeap::decreaseKey(int i, int x)
  */
 void MinHeap::deleteKey(int i)
 {
+    if (size <= 0 || size <= i) return;
+    
     decreaseKey(i, INT_MIN);
     extractMin();
 }
