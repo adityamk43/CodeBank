@@ -72,8 +72,8 @@ df['best quality'] = [1 if x > 5 else 0 for x in df.quality]
 # See proportion of good vs bad wines
 # print(df['best quality'].value_counts())
 
-features = df.drop(['quality', 'best quality'], axis=1)
-# features = df.drop(['quality', 'best quality', 'type_white'], axis=1)
+# features = df.drop(['quality', 'best quality'], axis=1)
+features = df.drop(['quality', 'best quality', 'type_white'], axis=1)
 target = df['best quality']
 
 xtrain, xtest, ytrain, ytest = train_test_split(
@@ -89,18 +89,6 @@ xtest = norm.transform(xtest)
 
 models = [LogisticRegression(), XGBClassifier(), SVC(kernel='rbf'), RandomForestClassifier()]
 
-# for i in range(4):
-# 	models[i].fit(xtrain, ytrain)
-
-# 	print(f'{models[i]} : ')
-# 	print('Score of the Model is : ', models[i].score(xtest,ytest))
-# 	print('Training Accuracy : ', metrics.roc_auc_score(ytrain, models[i].predict(xtrain)))
-# 	print('Validation Accuracy : ', metrics.roc_auc_score(
-# 		ytest, models[i].predict(xtest)))
-# 	print()
-	
-
-# For Comparing different datasets accuracy of predictions
 for i in range(4):
 	models[i].fit(xtrain, ytrain)
 
@@ -109,12 +97,24 @@ for i in range(4):
 	print('Training Accuracy : ', metrics.roc_auc_score(ytrain, models[i].predict(xtrain)))
 	print('Validation Accuracy : ', metrics.roc_auc_score(
 		ytest, models[i].predict(xtest)))
-	xpred = models[i].predict(xtest)
 	print()
-	print("Classification Report:")
-	print(metrics.classification_report(ytest, xpred))
-	print('....................................')
-	print()
+	
+
+# For Comparing different datasets accuracy of predictions
+# for i in range(4):
+# 	models[i].fit(xtrain, ytrain)
+
+# 	print(f'{models[i]} : ')
+# 	print('Score of the Model is : ', models[i].score(xtest,ytest))
+# 	print('Training Accuracy : ', metrics.roc_auc_score(ytrain, models[i].predict(xtrain)))
+# 	print('Validation Accuracy : ', metrics.roc_auc_score(
+# 		ytest, models[i].predict(xtest)))
+# 	xpred = models[i].predict(xtest)
+# 	print()
+# 	print("Classification Report:")
+# 	print(metrics.classification_report(ytest, xpred))
+# 	print('....................................')
+# 	print()
 	
 
 

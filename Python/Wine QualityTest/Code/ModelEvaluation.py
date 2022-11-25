@@ -20,6 +20,11 @@ pd.options.display.max_columns = None
 # df = pd.read_csv('winequality-white.csv')
 df = pd.read_csv('winequalityN.csv')
 
+
+for col in df.columns:
+    if df[col].isnull().sum() > 0:
+        df[col] = df[col].fillna(df[col].mean())
+
 df = df.drop('total sulfur dioxide', axis=1)
 
 df['best quality'] = [1 if x > 5 else 0 for x in df.quality]
