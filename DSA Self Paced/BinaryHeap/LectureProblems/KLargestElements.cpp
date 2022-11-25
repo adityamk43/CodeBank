@@ -29,7 +29,7 @@ using namespace std;
  * BEST: O(n)
  * WORST: O(n + logn)
  * 
- * SO, For Finding K Larges Elements MinHeap performs better than MaxHeap and is more optimised in terms of Time Complexity
+ * SO, For Finding K Largest Elements MinHeap performs better than MaxHeap and is more optimised in terms of Time Complexity
  * 
  * @param arr 
  * @param n 
