@@ -1,7 +1,7 @@
 /**
- * @file BFS.CPP
+ * @file BFSGraph.CPP
  * @author ADITYA BHARDWAJ
- * @brief 
+ * @brief FOR DIRECTED AND UNDIRECTED GRAPH
  * 
  * FEW APPLICATIONS OF BFS:
  * 
