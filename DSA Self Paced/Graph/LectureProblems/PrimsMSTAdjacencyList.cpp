@@ -36,6 +36,17 @@ public:
         adj[v].push_back(make_pair(u, weight));
     }
 
+    /**
+     * @brief Time Complexity: O(ElogV)
+     * 
+     *      How it is derived: O(VlogV + (V+E)logV)
+     *                         O((V+E)logV)
+     *                      Since, in Connected Graph E = V-1
+     * Therefore, 
+     * Overall Time Complexity: O(ElogV)
+     * 
+     * @return int 
+     */
     int primMST()
     {
         priority_queue<myPair, vector<myPair>, greater<myPair>> pq;
