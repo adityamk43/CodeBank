@@ -11,13 +11,13 @@ Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, Fin
  
 
 Example 1:
+Input:
 5 5
 1 0
 0 2
 2 1
 0 3
 3 4
-Input:
 
 Output:
 3
@@ -26,12 +26,11 @@ Explanation:
 We can clearly see that there are 3 Strongly
 Connected Components in the Graph
 Example 2:
+Input:
 3 3
 0 1
 1 2
 2 0
-
-Input:
 
 Output:
 1

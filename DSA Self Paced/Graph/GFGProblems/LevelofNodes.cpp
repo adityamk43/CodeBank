@@ -12,7 +12,13 @@ Note: Traverse the graph starting from vertex 0.
 Example 1:
 
 Input:
-
+6 5
+0 1
+0 2
+1 3
+1 4
+2 5
+4
 X = 4
 Output:
 2
@@ -22,7 +28,11 @@ We can clearly see that Node 4 lies at Level 2.
 Example 2:
 
 Input:
-
+4 3
+0 1
+0 2
+0 3
+5
 X = 5
 Output:
 -1
