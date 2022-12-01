@@ -113,6 +113,7 @@ class Graph
                 int v = mp.first;
                 int weight = mp.second;
 
+                //Relax Operation
                 if (finalised[v] == false && dist[v] > dist[u] + weight)
                 {
                     dist[v] = dist[u] + weight;

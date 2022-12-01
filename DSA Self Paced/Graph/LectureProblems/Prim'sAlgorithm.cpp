@@ -30,17 +30,21 @@ int primsMSTAlgo(int graph[V][V])
 
     for (int count=0; count<V; count++)
     {
-        int u;
-        int min_val = INT_MAX;
+        int u=-1;
+        // int min_val = INT_MAX;
+
+        // for (int i=0; i<V; i++)
+        // {
+        //     if (mstSet[i] == false && key[i] < min_val)
+        //     {
+        //         min_val = key[i];
+        //         u=i;
+        //     }
+        // }
 
         for (int i=0; i<V; i++)
-        {
-            if (mstSet[i] == false && key[i] < min_val)
-            {
-                min_val = key[i];
-                u=i;
-            }
-        }
+            if ( !mstSet[i] && (u==-1 || key[i] < key[u]))
+                u = i;
     
         mstSet[u] = true;
         res += key[u];
