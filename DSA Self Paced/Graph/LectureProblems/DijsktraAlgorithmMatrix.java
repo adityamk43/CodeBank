@@ -1,5 +1,6 @@
+
 /**
- * @file DijkstraAlgoAdjacencyMatrix.cpp
+ * @file DijsktraAlgorithmMatrix.java
  * @author ADITYA BHARDWAJ
  * @brief We have seen that adjacency list and min heap provides opitmised version of Dijsktra's Algo but let's see Dijsktra's Algo for adjacency Matrix.
  *
@@ -49,75 +50,53 @@
  *
  *
  * @version 0.1
- * @date 2022-12-01 04:52 PM
+ * @date 2022-12-01 05:48 PM
  *
  * @copyright Copyright (c) 2022
  *
  */
 
-#include <iostream>
-#include <vector>
-using namespace std;
+import java.util.*;
+// import java.lang.*;
+// import java.io.*;
 
-/**
- * @brief TIME COMPLEXITY: ⊝(V^2)
- * 
- * @param graph 
- * @param src 
- * @param V 
- * @return vector<int> 
- */
-vector<int> dijkstraAlgo(vector<int> graph[], int src, int V)
-{
-    vector<int> dist(V, INT_MAX);
-    vector<bool> finalise(V, false);
-    dist[src] = 0;
+class DijsktraAlgorithmMatrix {
 
-    for (int count=0; count<V-1; count++)
-    {
-        int u=-1;
-        int min_val = INT_MAX;
+    static final int V = 4;
 
-        for (int i=0; i<V; i++)
-            if ( !finalise[i] && (u==-1 || dist[i] < dist[u]))
-                u = i;
+    public static int[] djikstra(int graph[][], int src) {
 
-        // for (int i=0; i<V; i++)
-        // {
-        //     if ( !finalise[i] && dist[i] < min_val)
-        //     {
-        //         min_val = dist[i]; 
-        //         u = i;
-        //     }    
-        // }
+        int[] dist = new int[V];
+        // int res = 0;
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+        boolean[] fin = new boolean[V];
 
-        finalise[u] = true;
+        for (int count = 0; count < V - 1; count++) {
+            int u = -1;
 
-        for (int v=0; v<V; v++)
-        {
-            //Relax Operation
-            if (graph[u][v] != 0 && !finalise[v])
-                dist[v] = min(dist[v], dist[u] + graph[u][v]);
+            for (int i = 0; i < V; i++)
+                if (!fin[i] && (u == -1 || dist[i] < dist[u]))
+                    u = i;
+            fin[u] = true;
+
+            for (int v = 0; v < V; v++)
+
+                if (graph[u][v] != 0 && fin[v] == false)
+                    dist[v] = Math.min(dist[v], dist[u] + graph[u][v]);
         }
+        return dist;
     }
 
-    return dist;
+    public static void main(String[] args) {
+        int graph[][] = new int[][] { { 0, 50, 100, 0 },
+                { 50, 0, 30, 200 },
+                { 100, 30, 0, 20 },
+                { 0, 200, 20, 0 }, };
 
-}
+        for (int x : djikstra(graph, 0)) {
+            System.out.print(x + " ");
+        }
 
-int main()
-{
-    int V=4;
-    vector<int> graph[V] = { {0, 50, 100, 0},
-                        {50, 0, 30, 200},
-                        {100, 30, 0, 20},
-                        {0, 200, 20, 0}, };
-
-    vector<int> dist = dijkstraAlgo(graph, 0, V);
-
-    for (int x: dist)
-        cout << x << " ";
-    cout << endl;
-
-    return 0;
+    }
 }
