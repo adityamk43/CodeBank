@@ -48,7 +48,7 @@
  * 
  * 3.) then we traverse using topological sort in DFS manner to print each connected components and print them in a new line.
  * 
- * This approach or Kosaraju Algorithm takes 3 DFS Traversals as you can see above!!
+ * This approach or Kosaraju Algorithm takes 2 DFS Traversals as you can see above!!
  * 
  * NOTE: The reason we use this algorithm is that in normal traversal, it may happen that we may print whole graph instead of strongly connected components as DFS may traverse through whole graph if strongly connected component is connected with other component.
  * 
@@ -209,7 +209,7 @@ class Graph
      * 
      * NOTE: This algorithm is not the best algorithm for finding Strongly connected components. There exists a better algorithm called Tarjan Algorithm that finds the strongly connected components in one DFS Traversal of a Graph.
      * 
-     * Kosaraju uses Three DFS Traversals of a Graph.
+     * Kosaraju uses Two DFS Traversals of a Graph.
      * 
      */
     void kosarajuAlgo()
