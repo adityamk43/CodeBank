@@ -109,13 +109,14 @@ public:
                 st.pop();
             }
 
-            if (!st.empty())
-            {
+            //This condition check is not important or required
+            // if (!st.empty())
+            // {
                 int k = st.top();
                 myVect.push_back(k);
                 stackMember[k] = false;
                 st.pop();
-            }
+            // }
 
             sort(myVect.begin(), myVect.end());
 
