@@ -64,13 +64,22 @@ bool compare(Activity &a1, Activity &a2)
     return a1.finish < a2.finish;
 }
 
+/**
+ * @brief TIME COMPLEXITY: O(nlogn)
+ *        AUX SPACE: O(1) as we are not creating array
+ * 
+ * @param arr 
+ * @return int 
+ */
 int activitySelection(vector<Activity> arr)
 {
+    //O(nlogn)
     sort(arr.begin(), arr.end(), compare);
 
     int res = 1;
     int prev = 0;
 
+    //⊝(n)
     for (int i=1; i<arr.size(); i++)
     {
         if (arr[i].start >= arr[prev].finish)

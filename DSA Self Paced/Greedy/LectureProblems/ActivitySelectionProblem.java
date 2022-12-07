@@ -64,13 +64,21 @@ class Activity implements Comparable<Activity>
 
 public class ActivitySelectionProblem {
 
+    /**
+     * TIME COMPLEXITY: O(nlogn)
+     * AUX SPACE: O(1) as we are not creating array
+     * @param arr
+     * @return
+     */
     public static int maxActivity(Activity arr[])
     {
+        //O(nlogn)
         Arrays.sort(arr);
 
         int res=1;
         int prev=0;
 
+        //⊝(n)
         for (int i=1; i<arr.length; i++)
         {
             if (arr[i].start >= arr[prev].finish)
