@@ -81,6 +81,8 @@ public class ActivitySelectionProblem {
         //⊝(n)
         for (int i=1; i<arr.length; i++)
         {
+             //Condition can be like prev finish times can be a start time of another activity, but this condition can be changed according to the given problem in competitive coding platforms!
+            // if (arr[i].start > arr[prev].finish)
             if (arr[i].start >= arr[prev].finish)
             {
                 res++;
