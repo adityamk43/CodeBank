@@ -28,7 +28,7 @@ void permutations(string &s, vector<string> &curr, int i = 0)
         return;
     }
 
-    for (int j=0; j<s.length(); j++)
+    for (int j=i; j<s.length(); j++)
     {
         swap(s[i], s[j]);
         permutations(s, curr, i+1);
@@ -46,7 +46,8 @@ vector<string> myPermutations(string &s)
 
 int main()
 {
-    string s = "ABC";
+    // string s = "ABC";
+    string s = "ABCD";
     vector<string> perm = myPermutations(s);
 
     for (auto elem : perm)
