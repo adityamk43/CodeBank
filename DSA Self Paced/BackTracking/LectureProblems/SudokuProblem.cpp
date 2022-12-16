@@ -96,7 +96,7 @@ bool solveSudokuRec(int grid[N][N])
 /**
  * @brief
  *
- *  TIME COMPLEXITY: O(N^(N*N)), For every unassigned index, there are N possible options so the time complexity is O(n^(n*n)).
+ *  TIME COMPLEXITY: O(9^(N*N)), For every unassigned index, there are 9 possible options so the time complexity is O(n^(n*n)).
  *
  *  AUXILIARY SPACE: O(N*N), To store the output array a matrix is needed.
  *
