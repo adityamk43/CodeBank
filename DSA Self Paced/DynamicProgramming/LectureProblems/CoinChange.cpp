@@ -16,7 +16,7 @@
  *      O/P: 5
  *      (2+2+2+2+2, 5+5, 3+3+2+2, 6+2+2, 5+2+3)
  * 
- * VERY VERY VERY IMPORTANT NOTE: This question comes under the category of NP Hard solution, because its time complexity is pseudo polynomial since we are depending on n and s and if given s is high then time complexity will become very high. So, this problem cannot be called polynomial but it can be called as pseudo polynomial.
+ * VERY VERY VERY IMPORTANT NOTE: This Coin Change problem is one of those category problem called NP-Complete or NP-Hard because there doesn't exist a polynomial time solution and there is no known polynomial time solution for this problem and the solution here(⊝(n*s)) looks like polynomial but this is not polynomial, it is called pseudo polynomial because we are depending upon the value of the variable s, so if "s" is very very high then this time complexity would become very very high. So, this is Pseudo Polynomial Solution for Coin Change Problem using Dynamic Programming(D.P.).
  * 
  * @version 0.1
  * @date 2022-12-18 02:30 PM
