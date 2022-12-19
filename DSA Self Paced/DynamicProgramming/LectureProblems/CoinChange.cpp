@@ -73,6 +73,21 @@ using namespace std;
 //     return countWays(coins, n-1, s) + countWays(coins, n, s-coins[n-1]);
 // }
 
+// To find the minimum number of coins to make the change for value using the coins of given denominations
+// int countWays(int coins[], int n, int s)
+// {
+//     if (s==0)
+//         return 0;
+//     if (n==0)
+//         return INT_MAX;
+    
+//     if (coins[n-1] <= s)
+//         return min(countWays(coins, n-1, s), 1 + countWays(coins, n, s-coins[n-1]));
+//     else
+//         return countWays(coins, n-1, s);
+
+// }
+
 
 /**
  * @brief Idea of D.P. Tabulation Approach
@@ -119,8 +134,11 @@ int countWays(int coins[], int n, int s)
 int main()
 {
     int coins[] = {1, 2, 3};
+    // int coins[] = {3, 6, 3};
+    // int coins[] = {};
     int n = sizeof(coins)/sizeof(coins[0]);
     int sum = 4;
+    // int sum = 0;
 
     cout << countWays(coins, n, sum) << endl;
 
