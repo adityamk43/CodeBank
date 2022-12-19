@@ -1,5 +1,5 @@
 /**
- * @file LowestCommonSubsequence.cpp
+ * @file LongestCommonSubsequence.cpp
  * @author ADITYA BHARDWAJ
  * @brief 
  * 
