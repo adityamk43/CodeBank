@@ -5,7 +5,11 @@
  * 
  * Edit Distance problem is a problem where we have to convert the given string s1 into another given string s2 with minimum operations of insertion, deletion and replacement.
  * 
- * Edit Distance has many applications like correct mispelled words or if you want to create a search engine system and if user has written some word we can hint them close or wrong words close to the user's written word in "Did you mean" like Google does.
+ * Edit Distance Problem is important problem from Computer Science Perspective!
+ * 
+ * Edit Distance has many applications like correct mispelled words or suggesting spelling errors (if a user type spelling of a word wrong, we can use edit distance to find out the closest word that is there in dictionary) or if you want to create a search engine system or dictionary and if user has written some word we can hint them close or wrong words store at a edit distance close to 1, or 2 or so on.. and show those in "Did you mean" like Google does.
+ * 
+ * Edit Distance has also applications in Bioinformatics.
  * 
  * Edit distance can be called as a variation of LCS Problem.
  * 
