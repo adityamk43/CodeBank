@@ -20,7 +20,7 @@ using namespace std;
 /**
  * @brief PLAIN RECURSION WITH OVERLAPPINGS
  * 
- * TIME COMPLEXITY: O(3^n)
+ * TIME COMPLEXITY: O(2^n) [Either we pick coin or not so, 2^n]
  * AUXILIARY SPACE: O(n)
  * 
  * @param coins 
