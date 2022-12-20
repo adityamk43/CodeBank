@@ -64,32 +64,75 @@ class Solution
 public:
     // Function to find the minimum number of coins to make the change
     // for value using the coins of given denominations.
-    long long minimumNumberOfCoins(int coins[], int numberOfCoins, int value)
+
+    /**
+     * @brief this below solution uses 2D array taking extra auxiliary space
+     * 
+     */
+    // long long minimumNumberOfCoins(int coins[], int numberOfCoins, int value)
+    // {
+    //     // your code here
+    //     if (value == 0)
+    //         return 0;
+
+    //     long long dp[numberOfCoins + 1][value + 1];
+
+    //     for (int i = 0; i <= numberOfCoins; i++)
+    //         dp[i][0] = 0;
+
+    //     for (int j = 1; j <= value; j++)
+    //         dp[0][j] = INT_MAX;
+
+    //     for (int i = 1; i <= numberOfCoins; i++)
+    //     {
+    //         for (int j = 1; j <= value; j++)
+    //         {
+    //             dp[i][j] = dp[i - 1][j];
+
+    //             if (coins[i - 1] <= j)
+    //                 dp[i][j] = min(dp[i - 1][j], 1 + dp[i][j - coins[i - 1]]);
+    //         }
+    //     }
+
+    //     return dp[numberOfCoins][value] == INT_MAX ? -1 : dp[numberOfCoins][value];
+    // }
+
+    /**
+     * @brief This is the optimised solution by Sandeep sir taking only value as auxiliary space and same time complexity as above!!
+     * 
+     * @param coins 
+     * @param numberOfCoins 
+     * @param value 
+     * @return long long 
+     */
+    long long minimumNumberOfCoins(int coins[],int numberOfCoins,int value)
     {
         // your code here
         if (value == 0)
             return 0;
-
-        long long dp[numberOfCoins + 1][value + 1];
-
-        for (int i = 0; i <= numberOfCoins; i++)
-            dp[i][0] = 0;
-
-        for (int j = 1; j <= value; j++)
-            dp[0][j] = INT_MAX;
-
-        for (int i = 1; i <= numberOfCoins; i++)
+        
+        long long dp[value+1];
+        
+        dp[0]=0;
+        
+        for (int i=1; i<=value; i++)
+            dp[i] = INT_MAX;
+            
+        for (int i=1; i<=value; i++)
         {
-            for (int j = 1; j <= value; j++)
+            for (int j=0; j<numberOfCoins; j++)
             {
-                dp[i][j] = dp[i - 1][j];
-
-                if (coins[i - 1] <= j)
-                    dp[i][j] = min(dp[i - 1][j], 1 + dp[i][j - coins[i - 1]]);
+                if (coins[j] <= i)
+                {
+                    long long sub_res = dp[i-coins[j]];
+                    
+                    if (sub_res!=INT_MAX)
+                        dp[i] = min(dp[i], 1+sub_res);
+                }
             }
         }
-
-        return dp[numberOfCoins][value] == INT_MAX ? -1 : dp[numberOfCoins][value];
+        
+        return dp[value] == INT_MAX ? -1 : dp[value];
     }
 };
 
