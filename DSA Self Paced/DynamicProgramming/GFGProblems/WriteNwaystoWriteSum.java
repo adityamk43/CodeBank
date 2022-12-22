@@ -47,6 +47,52 @@ Constraints:
 //{ Driver Code Starts
 import java.util.*;
 
+//PLAIN RECURSION TECHNIQUE WITH OVERLAPPINGS
+//TIME COMPLEXITY: O(2^n)
+//AUXILIARY SPACE: O(n^2)
+/** 
+ * void printVector(vector<int>& arr)
+ {
+     if (arr.size() != 1) {
+         
+        // Traverse the vector arr
+        for (int i = 0; i < arr.size(); i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Recursive function to print different
+// ways in which N can be written as
+// a sum of at 2 or more positive integers
+//starts with i=1 
+void findWays(vector<int>& arr, int i, int n)
+{
+    // If n is zero then print this
+    // ways of breaking numbers
+    if (n == 0)
+        printVector(arr);
+ 
+    // Start from previous element
+    // in the representation till n
+    for (int j = i; j <= n; j++) {
+ 
+        // Include current element
+        // from representation
+        arr.push_back(j);
+ 
+        // Call function again
+        // with reduced sum
+        findWays(arr, j, n - j);
+ 
+        // Backtrack to remove current
+        // element from representation
+        arr.pop_back();
+    }
+}
+ */
+
 class WriteNwaystoWriteSum {
 
     public static void main(String[] args) {
