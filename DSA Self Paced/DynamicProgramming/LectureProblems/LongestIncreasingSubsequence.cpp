@@ -94,67 +94,67 @@ int ceilingIdx(int tail[], int l, int r, int x)
  * @param n 
  * @return int 
  */
-// int LIS(int arr[], int n)
-// {
-//     int tail[n];
-
-//     tail[0] = arr[0];
-//     int len = 1;
-
-//     for (int i=1; i<n; i++)
-//     {
-//         if (arr[i] > tail[len-1])
-//         {
-//             tail[len] = arr[i];
-//             len++;
-//         }
-//         else
-//         {
-//             int c=ceilingIdx(tail, 0, len-1, arr[i]);
-
-//             tail[c] = arr[i];
-//         }
-//     }
-
-//     return len;
-// }
-
-//Extras (logn solution using vector!!) T.C. same as BinarySearch soln.
-int ceilingIdxVect(vector<int> tail, int l, int r, int x)
-{
-    while (r>l)
-    {
-        int m = l + (r-l)/2;
-
-        if (tail[m] >= x)
-            r = m;
-        else
-            l=m+1;
-    }
-
-    return r;
-}
-
 int LIS(int arr[], int n)
 {
-    vector<int> tail;
+    int tail[n];
 
-    tail.push_back(arr[0]);
+    tail[0] = arr[0];
+    int len = 1;
 
     for (int i=1; i<n; i++)
     {
-        if (arr[i] > tail.back())
-            tail.push_back(arr[i]);
+        if (arr[i] > tail[len-1])
+        {
+            tail[len] = arr[i];
+            len++;
+        }
         else
         {
-            int c=ceilingIdxVect(tail, 0, tail.size()-1, arr[i]);
+            int c=ceilingIdx(tail, 0, len-1, arr[i]);
 
             tail[c] = arr[i];
         }
     }
 
-    return tail.size();
+    return len;
 }
+
+//Extras (logn solution using vector!!) T.C. same as BinarySearch soln.
+// int ceilingIdxVect(vector<int> tail, int l, int r, int x)
+// {
+//     while (r>l)
+//     {
+//         int m = l + (r-l)/2;
+
+//         if (tail[m] >= x)
+//             r = m;
+//         else
+//             l=m+1;
+//     }
+
+//     return r;
+// }
+
+// int LIS(int arr[], int n)
+// {
+//     vector<int> tail;
+
+//     tail.push_back(arr[0]);
+
+//     for (int i=1; i<n; i++)
+//     {
+//         if (arr[i] > tail.back())
+//             tail.push_back(arr[i]);
+//         else
+//         {
+//             int c=ceilingIdxVect(tail, 0, tail.size()-1, arr[i]);
+
+//             tail[c] = arr[i];
+//         }
+//     }
+
+//     return tail.size();
+// }
 
 int main()
 {

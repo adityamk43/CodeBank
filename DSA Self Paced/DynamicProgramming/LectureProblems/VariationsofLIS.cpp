@@ -168,7 +168,9 @@ int maxSumIS(int arr[], int n)
 }
 
 /**
- * @brief Biotonic Subsequence means the subsequence first is in increasing order and then decreasing order.
+ * @brief 
+ * //REFER GFGPROBLEM FOLDER FOR BITONIC SUBSEQUENCE AS THERE IS SOME ERROR IN O(NLOGN) APPROACH!!
+ * Biotonic Subsequence means the subsequence first is in increasing order and then decreasing order.
  * 
  * It is not necessary that Biotonic Subsequence always should either contain increasing order or decreasing order.
  * 
@@ -248,6 +250,7 @@ int main()
     cout << "Choose which variation of LIS you want to see: " << endl;
     cout << "1. Minimum Deletions to make an array sorted " << endl;
     cout << "2. Maximum Sum Increasing Subsequence " << endl;
+    //REFER GFGPROBLEM FOLDER FOR BITONIC SUBSEQUENCE AS THERE IS SOME ERROR IN O(NLOGN) APPROACH!!
     cout << "3. Maximum Biotonic Subsequence " << endl;
 
     int option;
@@ -289,16 +292,18 @@ int main()
         case 3:
         {
             //EXAMPLE 1
-            int arr[] = {1, 11, 2, 10, 4, 5, 2, 1};
+            // int arr[] = {1, 11, 2, 10, 4, 5, 2, 1};
             //EXAMPLE 2
             // int arr[] = {12, 11, 40, 5, 3, 1};
             //EXAMPLE 3
             // int arr[] = {30, 20, 10};
             //EXAMPLE 4
             // int arr[] = {10, 20, 30};
+            //EXAMPLE 5
+            int arr[] = {20, 7, 9, 6, 9, 21, 12, 3, 12, 16, 1, 27};
 
             int n = sizeof(arr)/sizeof(arr[0]);
-
+            //REFER GFGPROBLEM FOLDER FOR BITONIC SUBSEQUENCE AS THERE IS SOME ERROR IN O(NLOGN) APPROACH!!
             cout << maxLenBiotonicSub(arr, n) << endl;
             break;
         }
