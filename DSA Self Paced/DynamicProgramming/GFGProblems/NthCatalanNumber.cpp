@@ -41,8 +41,9 @@ Constraints:
 //{ Driver Code Starts
 // Initial template for C++
 
-#include <boost/multiprecision/cpp_int.hpp>
-using boost::multiprecision::cpp_int; // https://www.geeksforgeeks.org/factorial-large-number-using-boost-multiprecision-library/
+// #include <boost/multiprecision/cpp_int.hpp>
+// using boost::multiprecision::cpp_int; // https://www.geeksforgeeks.org/factorial-large-number-using-boost-multiprecision-library/
+#include <iostream>
 using namespace std;
 
 // } Driver Code Ends
@@ -52,12 +53,14 @@ class Solution
 {
 public:
     // Function to find the nth catalan number.
-    cpp_int factorial(int n)
+    //cpp_int 
+    long long factorial(int n)
     {
         if (n == 0)
             return 1;
 
-        cpp_int fact = 1;
+        //cpp_int 
+        long long fact = 1;
 
         for (int i = 1; i <= n; i++)
             fact = fact * i;
@@ -65,11 +68,14 @@ public:
         return fact;
     }
 
-    cpp_int findCatalan(int n)
+    // cpp_int
+    long long findCatalan(int n)
     {
         // code here
-        cpp_int a = factorial(2 * n);
-        cpp_int b = factorial(n);
+        // cpp_int 
+        long long a = factorial(2 * n);
+        // cpp_int 
+        long long b = factorial(n);
 
         return a / (b * b * (n + 1));
     }
