@@ -116,6 +116,9 @@ int main()
     //EXAMPLE 2
     int arr[] = {4, 1, 5, 3, 1, 3, 2, 1, 8};
     
+    //EXAMPLE 3
+    // int arr[] = {};
+    
     int n = sizeof(arr)/sizeof(arr[0]);
 
     cout << maxJumpsToEnd(arr, n) << endl;
