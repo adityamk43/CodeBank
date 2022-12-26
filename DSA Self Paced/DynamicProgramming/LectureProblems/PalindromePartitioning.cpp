@@ -100,6 +100,7 @@ bool isPalindrome(string &str, int i, int j)
  * As we did in Matrix Chain Multiplication, we will make dp[n][n] 2-D array and we will get answer in dp[0][n-1] and i<=j here, so array with dp[i][j] will not be filled where i>j
  * 
  * Here we have also optimised isPalindrome using D.P. in a sense that we will store isPalindrome data in an array table which will reduce isPalindrome function from O(n) to constant!
+ * Although this optimisation will not change upper bound of this solution but the palindrome part time complexity cost cutting will reduce the average time complexity for some test cases!!!
  * 
  * @param s 
  * @param i 
@@ -119,6 +120,7 @@ int palPartSol(string s)
     }
 
     //gap variable is to maintain gap between i and j to fill in upper top-down diagonal direction
+    //O(n^2)
     for (int gap=1; gap<n; gap++)
     {
         for (int i=0; i+gap<n; i++)
@@ -126,7 +128,8 @@ int palPartSol(string s)
             int j=i+gap;
 
             if (s[i]==s[j] && (isPalindrome[i+1][j-1] || gap==1))
-            {
+            {   
+                //O(1)
                 dp[i][j]=0;
                 isPalindrome[i][j]=true;
             }
@@ -135,6 +138,7 @@ int palPartSol(string s)
                 isPalindrome[i][j]=false;
                 dp[i][j]=INT_MAX;
 
+                //O(n)
                 for (int k=i; k<j; k++)
                     dp[i][j] = min(dp[i][j], 1+dp[i][k]+dp[k+1][j]);
             }
