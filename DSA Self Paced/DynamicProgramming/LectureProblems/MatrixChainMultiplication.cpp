@@ -151,13 +151,16 @@ int mChainSol(int arr[], int n)
 int main()
 {
     //EXAMPLE 1
-    int arr[] = {2, 1, 3, 4};
+    // int arr[] = {2, 1, 3, 4};
 
     //EXAMPLE 2
     // int arr[] = {20, 10, 30, 40};
     
     //EXAMPLE 3
     // int arr[] = {2, 1, 3};
+
+    //EXAMPLE 4
+    int arr[] = {10, 5, 20, 10, 5};
 
     int n = sizeof(arr)/sizeof(arr[0]);
 
