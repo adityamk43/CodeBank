@@ -118,7 +118,7 @@
     Beats 90.68%of users with TypeScript
 
 
- *  NOTE: There is not much difference between my implementation and this implementation both are same in speed but have different approaches!! and both are best according to me!
+ *  NOTE: There is not much difference between my implementation and this implementation both are same in speed but have different space complexity and different approaches!! But both are best according to me if we ignore space complexity otherwise this solution is efficient than mine one in terms of space complxity as we used one array here and handling both value and minValue inside object as a property and adding it inside a single stack array.
  */
 class MinStack {
   private stack: { value: number; minVal: number }[];
