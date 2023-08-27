@@ -46,13 +46,13 @@
 
     Runtime
     Details
-    47ms
-    Beats 98.45%of users with TypeScript
+    38ms
+    Beats 99.93%of users with TypeScript
 
     Memory
     Details
-    45.82MB
-    Beats 74.60%of users with TypeScript
+    45.18MB
+    Beats 95.22%of users with TypeScript
  */
 
 function search(nums: number[], target: number): number {
