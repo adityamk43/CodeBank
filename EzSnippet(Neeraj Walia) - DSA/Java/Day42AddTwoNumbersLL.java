@@ -1,6 +1,6 @@
 /**
  * 
- * NOTE: Day 41 code solved in Daily change on Leetcode on Sept 5, 2023
+ * NOTE: Day 41 code (138. Copy List with Random Pointer) solved in Daily change on Leetcode on Sept 5, 2023
  * 
  * @event Neeraj Walia (EzSnippet) DSA Challenge DAY - 42
  * @author ADITYA BHARDWAJ
