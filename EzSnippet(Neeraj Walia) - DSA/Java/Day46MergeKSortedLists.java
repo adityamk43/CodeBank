@@ -154,6 +154,22 @@ class ListNode {
  * c. Return the merged linked list obtained from the mergeSort function call.
  * 
  * 4.) End of algorithm.
+ * 
+ * @Time Complexity and Space Complexity:
+ * Time complexity: O(N log k), where N is the total number of nodes in all the
+ * linked lists, and k is the number of linked lists in the input vector. This
+ * is because the merge sort algorithm requires O(N log N) time to sort N items,
+ * and in this case, N is the total number of nodes in all the linked lists. The
+ * number of levels in the recursion tree of the merge sort algorithm is log k,
+ * where k is the number of linked lists in the input vector. Each level of the
+ * recursion tree requires O(N) time to merge the sorted lists, so the total
+ * time complexity is O(N log k).
+ * 
+ * @Space complexity: O(log k), which is the maximum depth of the recursion tree
+ * of the merge sort algorithm. The space used by each recursive call is
+ * constant, so the total space used by the algorithm is proportional to the
+ * maximum depth of the recursion tree. Since the depth of the tree is log k,
+ * the space complexity of the algorithm is O(log k).
  */
 class Solution {
 
@@ -220,20 +236,20 @@ public class Day46MergeKSortedLists {
         // Case 1
         ListNode[] lists = new ListNode[3];
 
-        ListNode list1= new ListNode(1, null);
-        list1.next= new ListNode(4, null);
-        list1.next.next= new ListNode(5, null);
+        ListNode list1 = new ListNode(1, null);
+        list1.next = new ListNode(4, null);
+        list1.next.next = new ListNode(5, null);
 
-        ListNode list2= new ListNode(1, null);
-        list2.next= new ListNode(3, null);
-        list2.next.next= new ListNode(4, null);
+        ListNode list2 = new ListNode(1, null);
+        list2.next = new ListNode(3, null);
+        list2.next.next = new ListNode(4, null);
 
-        ListNode list3= new ListNode(2, null);
-        list3.next= new ListNode(6, null);
+        ListNode list3 = new ListNode(2, null);
+        list3.next = new ListNode(6, null);
 
-        lists[0]=list1;
-        lists[1]=list2;
-        lists[2]=list3;
+        lists[0] = list1;
+        lists[1] = list2;
+        lists[2] = list3;
 
         // Case 2
         // ListNode[] lists = new ListNode[0];
