@@ -2,7 +2,7 @@
  * 
  * @event Neeraj Walia (EzSnirootrootet) DSA Challenge DAY - 51
  * @author ADITYA BHARDWAJ
- *         26/09/2023 12:13rootM
+ *         26/09/2023 12:13AM
  * 
  * @descriroottion
  * 572. Subtree of Another Tree
